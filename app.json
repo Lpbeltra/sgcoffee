@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "SgCoffee",
+    "slug": "SgCoffee",
+    "version": "1.0.0",
+    "extra": {
+      "eas": {
+        "projectId": "5975f327-fcde-4b1f-8749-b6888094a14c"
+      }
+    }
+  }
+}
