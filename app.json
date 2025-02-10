@@ -1,11 +1,36 @@
 {
   "expo": {
     "name": "SgCoffee",
-    "slug": "SgCoffee",
+    "slug": "sgcoffee",
+    "platforms": [
+      "android"
+    ],
     "version": "1.0.0",
+    "orientation": "landscape",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.example.sgcoffee",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
+        }
+      }
+    },
     "extra": {
       "eas": {
-        "projectId": "5975f327-fcde-4b1f-8749-b6888094a14c"
+        "projectId": "6d4cf3e5-16b8-4f42-9466-dd122dfad4f5"
       }
     }
   }

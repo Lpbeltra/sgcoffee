@@ -39,3 +39,13 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if ('com.facebook.react' == details.requested.group) {
+                details.useVersion "0.76.5" // Insira a versão correta do React Native aqui
+            }
+        }
+    }
+}
