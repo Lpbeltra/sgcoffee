@@ -37,7 +37,7 @@ function ApiConfigScreen({ navigation }) {
 // Tela Inicial
 function HomeScreen({ navigation, route }) {
   const [clickCount, setClickCount] = useState(0);
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   const handleTitleClick = () => {
     setClickCount((prevCount) => prevCount + 1);
@@ -75,7 +75,7 @@ function HomeScreen({ navigation, route }) {
 function ColaboradorScreen({ navigation, route }) {
   const [uniqueId, setUniqueId] = useState('');
   const [nome, setNome] = useState('');
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   const handleNumericInput = (text) => {
     const numericText = text.replace(/[^0-9]/g, ''); 
@@ -150,7 +150,7 @@ function CreditosScreen({ route, navigation }) {
   const { uniqueId, nome } = route.params;
   const [credito, setCredito] = useState(0);
   const [saldo, setSaldo] = useState(null);
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   useEffect(() => {
     const backAction = () => true;

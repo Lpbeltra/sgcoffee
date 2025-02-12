@@ -37,7 +37,7 @@ function ApiConfigScreen({ navigation }) {
 // Tela Inicial
 function HomeScreen({ navigation, route }) {
   const [clickCount, setClickCount] = useState(0);
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   const handleTitleClick = () => {
     setClickCount((prevCount) => prevCount + 1);
@@ -75,7 +75,7 @@ function HomeScreen({ navigation, route }) {
 function ColaboradorScreen({ navigation, route }) {
   const [uniqueId, setUniqueId] = useState('');
   const [nome, setNome] = useState('');
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   const handleNumericInput = (text) => {
     const numericText = text.replace(/[^0-9]/g, ''); 
@@ -87,22 +87,24 @@ function ColaboradorScreen({ navigation, route }) {
       Alert.alert('Erro', 'Por favor, insira um ID válido.');
       return;
     }
-
+  
     try {
-      const response = await fetch(`${apiUrl}/verificar_usuario`, {
+      const response = await fetch(`${apiUrl}/verificar_login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id_user: uniqueId,
-          valor: 0,
+          id_user: uniqueId,  // This matches the key expected by the Flask API
+          valor: 0,           // Additional field (if needed)
         }),
       });
-
+  
       const data = await response.json();
-
+  
+      // Check if the response is successful and the API returned success: true
       if (response.ok && data.success) {
-        setNome(data.nome);
-        // Exibir uma confirmação
+        setNome(data.nome);  // Set the user's name from the API response
+  
+        // Show a confirmation dialog
         Alert.alert(
           'Confirmação',
           `Você é o(a) ${data.nome}?`,
@@ -119,7 +121,9 @@ function ColaboradorScreen({ navigation, route }) {
           { cancelable: false }
         );
       } else {
-        Alert.alert('Erro', 'Usuário não encontrado.');
+        // If the API returns success: false, show the error message from the API
+        const errorMessage = data.message || 'Usuário não encontrado.';
+        Alert.alert('Erro', errorMessage);
       }
     } catch (error) {
       console.error('Erro ao verificar usuário:', error);
@@ -150,7 +154,7 @@ function CreditosScreen({ route, navigation }) {
   const { uniqueId, nome } = route.params;
   const [credito, setCredito] = useState(0);
   const [saldo, setSaldo] = useState(null);
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   useEffect(() => {
     const backAction = () => true;
