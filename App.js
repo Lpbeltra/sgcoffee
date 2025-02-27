@@ -37,7 +37,7 @@ function ApiConfigScreen({ navigation }) {
 // Tela Inicial
 function HomeScreen({ navigation, route }) {
   const [clickCount, setClickCount] = useState(0);
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   const handleTitleClick = () => {
     setClickCount((prevCount) => prevCount + 1);
@@ -75,7 +75,7 @@ function HomeScreen({ navigation, route }) {
 function ColaboradorScreen({ navigation, route }) {
   const [uniqueId, setUniqueId] = useState('');
   const [nome, setNome] = useState('');
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   const handleNumericInput = (text) => {
     const numericText = text.replace(/[^0-9]/g, ''); 
@@ -89,7 +89,7 @@ function ColaboradorScreen({ navigation, route }) {
     }
 
     try {
-      const response = await fetch(`${apiUrl}/verificar_usuario`, {
+      const response = await fetch(`${apiUrl}/verificar_login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -150,7 +150,7 @@ function CreditosScreen({ route, navigation }) {
   const { uniqueId, nome } = route.params;
   const [credito, setCredito] = useState(0);
   const [saldo, setSaldo] = useState(null);
-  const apiUrl = route.params?.apiUrl || 'http://10.0.2.2:5000';
+  const apiUrl = route.params?.apiUrl || 'http://172.16.102.5:5000';
 
   useEffect(() => {
     const backAction = () => true;
@@ -230,7 +230,7 @@ function CreditosScreen({ route, navigation }) {
       <Text style={styles.title}>Bem-vindo (a), {nome}!</Text>
       <Text style={styles.title}>Seu Crédito: R$ {credito}</Text>
       {uniqueId !== '999999' && saldo !== null && (
-        <Text style={styles.smallText}>Balanço: ({saldo})</Text>
+        <Text style={styles.smallText}>Balanço: R$ {saldo}</Text>
       )}
 
       <View style={styles.buttonsContainer}>
@@ -280,10 +280,7 @@ export default function App() {
         <Stack.Screen
           name="Creditos"
           component={CreditosScreen}
-          options={{
-            title: 'Selecionar Valor',
-            headerLeft: null,
-          }}
+          options={{ headerShown: false }}
         />
           <Stack.Screen
           name="Api"
