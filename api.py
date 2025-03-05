@@ -5,11 +5,7 @@ import argparse
 app = Flask(__name__)
 
 db_config = {
-    'host': '192.168.1.252',
-    'port': '3306',
-    'user': 'sgps',
-    'password': '6Cx8A3p7',
-    'database': 'sgps'
+
 }
 
 def get_db_connection():
